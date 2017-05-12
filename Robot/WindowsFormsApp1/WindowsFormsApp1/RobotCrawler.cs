@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
 {
     public class RobotCrawler
     {
-        public void Crawling(string url, string subLinkID, string accID)
+        public void Crawling(string url, string image, string subLinkID, string accID)
         {
             try
             {
@@ -35,6 +35,7 @@ namespace WindowsFormsApp1
                             CrawlerSubLinkID = crawler.ID,
                             LinkHTML = url,
                             Title = title,
+                            Image = image,
                             Description = description,
                             Date = date,
                             Content = content,
