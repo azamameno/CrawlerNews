@@ -22,10 +22,8 @@ namespace WindowsFormsApp1
         {
             try
             {
-                var sHttp = tbHTTP.Text;
-
                 /* Process data */
-                bool result = CDataProcess.ProcessData(sHttp);
+                bool result = CDataProcess.ProcessData(tbName.Text, tbHTTP.Text);
                 if (result == true)
                     lbStatus.Text = "Status: loading success!";
                 else
