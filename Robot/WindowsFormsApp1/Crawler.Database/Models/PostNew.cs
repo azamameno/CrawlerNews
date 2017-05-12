@@ -20,6 +20,9 @@ namespace Crawler.Database.Models
         public string CrawlerSubLinkID { get; set; }
 
         [Required]
+        public string LinkHTML { get; set; }
+
+        [Required]
         public string Title { get; set; }
 
         public DateTime Date { get; set; }
