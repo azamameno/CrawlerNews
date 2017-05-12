@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Crawler.Database.Models;
+using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -14,10 +16,21 @@ namespace WindowsFormsApp1
             bool ret = false;
             try
             {
-                WebClient client = new WebClient();
-                string downloadedString = client.DownloadString(sHttp);
+                using (var _db = new CrawlerModel())
+                {
+                    //WebClient client = new WebClient();
+                    //string downloadedString = client.DownloadString(sHttp);
 
-                ret = true;
+                    HtmlWeb web = new HtmlWeb();
+                    HtmlDocument doc = web.Load(sHttp);
+                    var listItem = doc.DocumentNode.SelectNodes("//item");
+
+                    foreach (HtmlNode node in listItem)
+                    {
+                        var temp = node.InnerText;
+                    }
+                    ret = true;
+                }
             }
             catch(Exception ex)
             { }
