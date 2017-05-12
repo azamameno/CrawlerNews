@@ -48,7 +48,9 @@ namespace WindowsFormsApp1
             if (!string.IsNullOrEmpty(lbID.Text))
             {
                 bool isOK = FromEvents.DeleteLinkDTO(lbID.Text);
-                if (isOK) lbID.Text = "";
+                if (isOK) CleanLinkDTO();
+                ListLinkDTO = FromEvents.GetListLinkDTO();
+                LoadLinkDTOToListView(ListLinkDTO);
             }
         }
 
@@ -78,7 +80,9 @@ namespace WindowsFormsApp1
             if (!string.IsNullOrEmpty(lbSubID.Text))
             {
                 bool isOK = FromEvents.DeleteLinkDTO(lbSubID.Text);
-                if (isOK) lbSubID.Text = "";
+                if (isOK) CleanSubLinkDTO();
+                var link = FromEvents.GetLinkDTO(lbID.Text, ListLinkDTO);
+                LoadSubLinkDTOToListView(link.ListSubLink);
             }
             else
                 MessageBox.Show("aidhsa");
@@ -90,7 +94,10 @@ namespace WindowsFormsApp1
             {
                 int index = lvCrawlerLink.SelectedIndices[0];
                 string id = lvCrawlerLink.Items[index].Text;
-                LoadLinkDTOSingle(FromEvents.GetLinkDTO(id, ListLinkDTO));
+                var link = FromEvents.GetLinkDTO(id, ListLinkDTO);
+                LoadLinkDTOSingle(link);
+                gbSubLink.Enabled = true;
+                LoadSubLinkDTOToListView(link.ListSubLink);
             }
         }
 
@@ -103,6 +110,38 @@ namespace WindowsFormsApp1
                 var link = FromEvents.GetLinkDTO(lbID.Text, ListLinkDTO);
                 LoadSubLinkDTOSingle(FromEvents.GetSubLinkDTO(id, link.ListSubLink));
             }
+        }
+
+        private void CleanLinkDTO()
+        {
+            lbID.Text = "";
+            tbName.Text = "";
+            tbURL.Text = "";
+            cbRun.Checked = false;
+
+            gbSubLink.Enabled = false;
+            lbSubID.Text = "";
+            tbSubName.Text = "";
+            tbSubURL.Text = "";
+            cbSubRun.Checked = false;
+            tbXPathTitle.Text = "";
+            tbXPathDate.Text = "";
+            tbXPathDescription.Text = "";
+            tbXPathImage.Text = "";
+            tbXPathContent.Text = "";
+        }
+
+        private void CleanSubLinkDTO()
+        {
+            lbSubID.Text = "";
+            tbSubName.Text = "";
+            tbSubURL.Text = "";
+            cbSubRun.Checked = false;
+            tbXPathTitle.Text = "";
+            tbXPathDate.Text = "";
+            tbXPathDescription.Text = "";
+            tbXPathImage.Text = "";
+            tbXPathContent.Text = "";
         }
 
         private void LoadLinkDTOSingle(LinkDTO dto)
@@ -128,17 +167,19 @@ namespace WindowsFormsApp1
 
         private void LoadLinkDTOToListView(List<LinkDTO> listDTO)
         {
-            lvCrawlerLink.Clear();
+            lvCrawlerLink.Items.Clear();
             foreach (var dto in listDTO)
             {
-                string[] item = { dto.ID, dto.Name, dto.IsRun.ToString() };
-                lvCrawlerLink.Items.Add(new ListViewItem(item));
+                ListViewItem lvi = new ListViewItem(dto.ID);
+                lvi.SubItems.Add(dto.Name);
+                lvi.SubItems.Add(dto.IsRun.ToString().ToLower());
+                lvCrawlerLink.Items.Add(lvi);
             }
         }
 
         private void LoadSubLinkDTOToListView(List<SubLinkDTO> listDTO)
         {
-            lvSubLink.Clear();
+            lvSubLink.Items.Clear();
             foreach (var dto in listDTO)
             {
                 string[] item = { dto.ID, dto.Name, dto.IsRun.ToString() };
@@ -163,7 +204,8 @@ namespace WindowsFormsApp1
             if (isOK)
             {
                 lbSubID.Text = "";
-                var link = FromEvents.GetLinkDTO(dto.LinkID, ListLinkDTO);
+                var listDTO = FromEvents.GetListLinkDTO();
+                var link = FromEvents.GetLinkDTO(dto.LinkID, listDTO);
                 LoadSubLinkDTOToListView(link.ListSubLink);
             }
         }

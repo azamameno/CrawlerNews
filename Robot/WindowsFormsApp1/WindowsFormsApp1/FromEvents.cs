@@ -173,16 +173,20 @@ namespace WindowsFormsApp1
             {
                 using (var _db = new CrawlerModel())
                 {
-                    var link = _db.CrawlerLinks.Where(o => o.ID == id).FirstOrDefault();
-                    if (link != null)
+                    var checkSubLink = _db.CrawlerSubLinks.Where(o => o.CrawlerLinkID == id && !o.IsDelete).FirstOrDefault();
+                    if (checkSubLink == null)
                     {
-                        link.IsDelete = true;
-                        link.ModifierDate = DateTime.Now;
-                        if (_db.SaveChanges() > 0)
+                        var link = _db.CrawlerLinks.Where(o => o.ID == id).FirstOrDefault();
+                        if (link != null)
+                        {
+                            link.IsDelete = true;
+                            link.ModifierDate = DateTime.Now;
+                            if (_db.SaveChanges() > 0)
+                                result = true;
+                        }
+                        else
                             result = true;
                     }
-                    else
-                        result = true;
                 }
             }
             catch (Exception ex)
