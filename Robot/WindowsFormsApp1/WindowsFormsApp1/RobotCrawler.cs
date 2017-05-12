@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
 {
     public class RobotCrawler
     {
-        public void Crawling(string url, string image, string subLinkID, string accID)
+        public static void Crawling(string url, string image, string subLinkID, string accID)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private DateTime GetDatetimeFormString(string strFullDate)
+        private static DateTime GetDatetimeFormString(string strFullDate)
         {
             var tempDate = strFullDate.Split(' ');
 
