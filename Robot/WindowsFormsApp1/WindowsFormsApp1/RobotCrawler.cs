@@ -17,8 +17,9 @@ namespace WindowsFormsApp1
             {
                 using (var _db = new CrawlerModel())
                 {
+                    var checkInsert = _db.PostNews.Where(o => o.LinkHTML == url && !o.IsDelete).FirstOrDefault();
                     var crawler = _db.CrawlerSubLinks.Where(o => o.ID == subLinkID && o.IsRun && !o.IsDelete).FirstOrDefault();
-                    if (crawler != null)
+                    if (crawler != null && checkInsert == null)
                     {
                         HtmlWeb htmlWeb = new HtmlWeb();
                         HtmlAgilityPack.HtmlDocument htmlDoc = htmlWeb.Load(url);
