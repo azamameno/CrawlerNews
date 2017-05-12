@@ -22,6 +22,9 @@ namespace Crawler.Database.Models
         [StringLength(50)]
         public string CrawlerLinkID { get; set; }
 
+        [StringLength(50)]
+        public string ParentID { get; set; }
+
         [Required]
         public string Name { get; set; }
 
