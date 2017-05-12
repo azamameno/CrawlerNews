@@ -35,7 +35,7 @@ namespace WindowsFormsApp1
                         SubLink = o.SubLink,
                         IsRun = o.IsRun,
                         XPathTitle = o.XPathTitle,
-                        XPatheImage = o.XPathImage,
+                        XPathImage = o.XPathImage,
                         XPathDate = o.XPathDate,
                         XPathDescription = o.XPathDescription,
                         XPathContent = o.XPathContent
@@ -128,7 +128,7 @@ namespace WindowsFormsApp1
                             IsRun = dto.IsRun,
                             XPathTitle = dto.XPathTitle,
                             XPathDate = dto.XPathDate,
-                            XPathImage = dto.XPatheImage,
+                            XPathImage = dto.XPathImage,
                             XPathDescription = dto.XPathDescription,
                             XPathContent = dto.XPathContent,
                             IsDelete = false,
@@ -149,7 +149,7 @@ namespace WindowsFormsApp1
                             subLink.IsRun = dto.IsRun;
                             subLink.XPathTitle = dto.XPathTitle;
                             subLink.XPathDate = dto.XPathDate;
-                            subLink.XPathImage = dto.XPatheImage;
+                            subLink.XPathImage = dto.XPathImage;
                             subLink.XPathDescription = dto.XPathDescription;
                             subLink.XPathContent = dto.XPathContent;
                             subLink.ModifierDate = DateTime.Now;

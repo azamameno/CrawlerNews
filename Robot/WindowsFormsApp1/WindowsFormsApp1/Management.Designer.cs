@@ -93,6 +93,7 @@
             this.lvCrawlerLink.TabIndex = 0;
             this.lvCrawlerLink.UseCompatibleStateImageBehavior = false;
             this.lvCrawlerLink.View = System.Windows.Forms.View.Details;
+            this.lvCrawlerLink.SelectedIndexChanged += new System.EventHandler(this.lvCrawlerLink_SelectedIndexChanged);
             // 
             // ID
             // 
@@ -167,6 +168,7 @@
             this.lvSubLink.TabIndex = 0;
             this.lvSubLink.UseCompatibleStateImageBehavior = false;
             this.lvSubLink.View = System.Windows.Forms.View.Details;
+            this.lvSubLink.SelectedIndexChanged += new System.EventHandler(this.lvSubLink_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -253,6 +255,7 @@
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // tbSubName
             // 
@@ -386,6 +389,7 @@
             this.btSubSave.TabIndex = 8;
             this.btSubSave.Text = "Save";
             this.btSubSave.UseVisualStyleBackColor = true;
+            this.btSubSave.Click += new System.EventHandler(this.btSubSave_Click);
             // 
             // btSubDelete
             // 
@@ -395,6 +399,7 @@
             this.btSubDelete.TabIndex = 9;
             this.btSubDelete.Text = "Delete";
             this.btSubDelete.UseVisualStyleBackColor = true;
+            this.btSubDelete.Click += new System.EventHandler(this.btSubDelete_Click);
             // 
             // Management
             // 

@@ -15,7 +15,7 @@ namespace Crawler.DTO
         public bool IsRun { get; set; }
         public string XPathTitle { get; set; }
         public string XPathDate { get; set; }
-        public string XPatheImage { get; set; }
+        public string XPathImage { get; set; }
         public string XPathDescription { get; set; }
         public string XPathContent { get; set; }
     }
